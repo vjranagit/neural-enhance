@@ -109,14 +109,14 @@ Here's the simplest way you can call the script using ``docker``, assuming you'r
     alias enhance='function ne() { docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`"; }; ne'
 
     # Now run any of the examples above using this alias, without the `.py` extension.
-    enhance --zoom=1 --model=repair images/broken.jpg
+    enhance --zoom=1 --model=repair input/broken.jpg
 
 **Multiple Images** — To enhance multiple images in a row (faster) from a folder or wildcard specification, make sure to quote the argument to the alias command:
 
 .. code:: bash
     
     # Process multiple images, make sure to quote the argument!
-    enhance --zoom=2 "images/*.jpg"
+    enhance --zoom=2 "input/*.jpg"
 
 If you want to run on your NVIDIA GPU, you can instead change the alias to use the image ``alexjc/neural-enhance:gpu`` which comes with CUDA and CUDNN pre-installed.  Then run it within `nvidia-docker <https://github.com/NVIDIA/nvidia-docker>`_ and it should use your physical hardware!
 
